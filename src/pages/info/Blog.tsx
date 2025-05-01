@@ -1,38 +1,40 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; // Para enlaces a artículos individuales
 
-// Datos de ejemplo para artículos del blog
-const blogPosts = [
+// Datos para artículos del blog
+export const blogPosts = [
   {
-    id: 'blog-1',
+    id: 'blog-reciclaje-casa',
     title: '5 Tips para mejorar la separación de residuos en casa',
-    excerpt: 'Descubre cómo optimizar tu proceso de reciclaje doméstico con estos sencillos consejos...',
+    excerpt: 'Separar adecuadamente los residuos desde casa es el primer paso para tener un sistema de reciclaje más eficiente...',
+    content: `Separar adecuadamente los residuos desde casa es el primer paso para tener un sistema de reciclaje más eficiente y con menor impacto ambiental. Muchas veces mezclamos basura orgánica con plásticos o papeles que podrían reutilizarse, lo cual complica el trabajo de los recolectores y reduce el valor de los materiales.\n\nAquí te compartimos 5 consejos prácticos:\n\n- Coloca botes diferenciados por tipo de residuo.\n- Limpia los envases antes de tirarlos.\n- Aplasta botellas y latas para ahorrar espacio.\n- Separa residuos peligrosos (pilas, electrónicos).\n- Infórmate sobre días y puntos de recolección en tu ciudad.\n\nAplicando estos pasos, no solo ayudas al medio ambiente, sino que también facilitas la labor de quienes viven del reciclaje, conectando con ellos desde plataformas como e-colector.`,
     category: 'Reciclaje',
-    date: '10 Julio, 2024',
-    imageUrl: 'https://via.placeholder.com/400x250.png?text=Separación+Residuos'
+    date: '15 Agosto, 2024',
+    imageUrl: 'https://via.placeholder.com/400x250.png?text=Separación+Casa' // Reemplazar con imagen real
   },
   {
-    id: 'blog-2',
+    id: 'blog-economia-circular',
     title: 'La Economía Circular: Más allá del reciclaje',
-    excerpt: 'Entiende qué es la economía circular y cómo e-colector contribuye a este modelo sostenible...',
+    excerpt: 'La economía circular es un modelo que busca alargar el ciclo de vida de los productos y materiales, reduciendo al máximo los residuos...',
+    content: `La economía circular es un modelo que busca alargar el ciclo de vida de los productos y materiales, reduciendo al máximo los residuos. A diferencia del modelo lineal (producir–usar–desechar), la economía circular propone reutilizar, reparar, transformar y reciclar continuamente.\n\ne-colector nace bajo este enfoque: conectar a quienes generan residuos con quienes pueden aprovecharlos. Esto no solo reduce desechos, sino que también activa cadenas de valor locales, genera oportunidades económicas y fortalece comunidades.\n\nDesde un hogar que publica cartón, hasta una empresa que transforma PET en nuevos productos, todos los usuarios de la plataforma participan en un sistema más justo y sostenible.`,
     category: 'Economía Circular',
-    date: '5 Julio, 2024',
-    imageUrl: 'https://via.placeholder.com/400x250.png?text=Economía+Circular'
+    date: '10 Agosto, 2024',
+    imageUrl: 'https://via.placeholder.com/400x250.png?text=Economía+Circular' // Reemplazar con imagen real
   },
   {
-    id: 'blog-3',
-    title: 'Historia de Éxito: Recicladora transforma PET en filamento 3D',
-    excerpt: 'Conoce cómo una de nuestras usuarias está innovando gracias a los materiales obtenidos en la plataforma...',
+    id: 'blog-historia-pet-3d',
+    title: 'Recicladora transforma PET en filamento 3D',
+    excerpt: 'Claudia es una emprendedora de Nuevo León que, a través de e-colector, ha logrado conseguir botellas PET limpias y a bajo costo...',
+    content: `Claudia es una emprendedora de Nuevo León que, a través de e-colector, ha logrado conseguir botellas PET limpias y a bajo costo. Gracias a esto, desarrolló un pequeño taller donde transforma el plástico en filamento para impresoras 3D.\n\nCon una trituradora casera y una extrusora adaptada, Claudia produce filamento que vende a estudiantes, makers y artistas. Este proyecto no solo reduce residuos, sino que también genera ingresos locales y fomenta la innovación.\n\nCasos como el de Claudia muestran cómo la tecnología, el reciclaje y la colaboración pueden abrir caminos reales hacia la sostenibilidad y el autoempleo.`,
     category: 'Historias de Éxito',
-    date: '1 Julio, 2024',
-    imageUrl: 'https://via.placeholder.com/400x250.png?text=Historia+Éxito'
-  },
-  // Añadir más posts...
+    date: '5 Agosto, 2024',
+    imageUrl: 'https://via.placeholder.com/400x250.png?text=PET+a+Filamento+3D' // Reemplazar con imagen real
+  }
 ];
 
 const Blog = () => {
   // TODO: Implementar filtrado por categoría
-  const categories = ['Todos', 'Reciclaje', 'Economía Circular', 'Historias de Éxito', 'Noticias'];
+  const categories = ['Todos', 'Reciclaje', 'Economía Circular', 'Historias de Éxito']; // Ajustar categorías si es necesario
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -41,12 +43,12 @@ const Blog = () => {
       {/* Filtros de Categoría (Opcional) */}
       <div className="mb-8 flex justify-center flex-wrap gap-2">
         {categories.map(category => (
-          <button 
-            key={category} 
+          <button
+            key={category}
             // onClick={() => setActiveCategory(category)} // Lógica de filtrado
-            className={`px-4 py-2 rounded-full border text-sm font-medium transition ${ 
+            className={`px-4 py-2 rounded-full border text-sm font-medium transition ${
               category === 'Todos' // Simular categoría activa
-                ? 'bg-emerald-600 text-white border-emerald-600' 
+                ? 'bg-emerald-600 text-white border-emerald-600'
                 : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-100'
             }`}
           >

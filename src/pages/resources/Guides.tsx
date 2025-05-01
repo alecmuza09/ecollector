@@ -2,33 +2,49 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { BookOpen, Download, ArrowRight } from 'lucide-react';
 
-// Datos de ejemplo para guías
-const guides = [
+// Definir tipo para las guías
+interface Guide {
+  id: string;
+  title: string;
+  description: string;
+  type: string;
+  icon: React.ElementType; // Tipo para componente de ícono
+  content?: string; // Contenido detallado (opcional)
+  link?: string; // Enlace interno
+  downloadUrl?: string; // Enlace de descarga
+}
+
+// Exportar los datos de las guías
+export const guides: Guide[] = [
   {
-    id: 'guide-1',
+    id: 'vendedores-publicacion', // Nuevo ID
     title: 'Guía para Vendedores: Cómo crear tu primera publicación',
-    description: 'Un tutorial paso a paso para publicar tus materiales reciclables en e-colector.',
+    description: 'Aprender a subir tu primer material reciclable en e-colector de forma correcta, clara y atractiva.',
     type: 'Tutorial',
     icon: BookOpen,
-    link: '/recursos/guias/vendedores-101' // Enlace a la guía detallada
+    link: '/recursos/guias/vendedores-publicacion', // Enlace actualizado
+    content: `### Objetivo:
+Aprender a subir tu primer material reciclable en e-colector de forma correcta, clara y atractiva.\n\n### Contenido:\n\n1.  **Crea tu cuenta**\n    *   Regístrate con tu correo, Google o Facebook\n    *   Elige tu rol: Generador de residuos / Vendedor\n2.  **Accede a tu panel de usuario**\n    *   Haz clic en "Publicar Material"\n    *   Ingresa al formulario guiado\n3.  **Completa la información del material**\n    *   Título (Ej: Botellas PET limpias, 20kg)\n    *   Categoría (Plástico, Cartón, etc.)\n    *   Tipo: Reutilizable / Reciclable / Desperdicio aprovechable\n    *   Cantidad (kg, piezas, bultos)\n    *   Descripción (estado, limpieza, forma de entrega)\n    *   Precio (opcional)\n    *   Ubicación y contacto\n4.  **Sube tus imágenes**\n    *   Imagen de portada clara\n    *   Galería (opcional) para mostrar volumen o condición\n5.  **Publica y revisa**\n    *   Una vez publicada, podrás editarla desde tu panel\n    *   Los recolectores o compradores interesados te escribirán directamente\n\n**Tip:** Publicaciones con fotos limpias, títulos claros y descripciones completas tienen mayor visibilidad y respuestas.`
   },
   {
-    id: 'guide-2',
+    id: 'clasificacion-plasticos', // Nuevo ID
     title: 'Mejores Prácticas para la Clasificación de Plásticos',
-    description: 'Aprende a identificar y separar correctamente los diferentes tipos de plástico para maximizar su valor.',
+    description: 'Ayudar a los usuarios a identificar, separar y etiquetar correctamente los plásticos, maximizando su valor y facilitando su recolección.',
     type: 'Mejores Prácticas',
     icon: BookOpen,
-    link: '/recursos/guias/clasificacion-plasticos'
+    link: '/recursos/guias/clasificacion-plasticos', // Enlace actualizado
+    content: `### Objetivo:
+Ayudar a los usuarios a identificar, separar y etiquetar correctamente los plásticos, maximizando su valor y facilitando su recolección.\n\n### Contenido:\n\n**Conoce los principales tipos de plásticos reciclables:**\n*   **PET (1):** Botellas de agua y refresco.\n*   **HDPE (2):** Detergentes, envases opacos.\n*   **PVC (3):** Tubos, algunas botellas.\n*   **LDPE (4):** Bolsas flexibles, envolturas.\n*   **PP (5):** Tapas, tupperware.\n*   **PS (6):** Vasos de unicel, charolas.\n*   **Otros (7):** Mezclas de plástico (difícil reciclaje).\n\n**Limpieza básica antes de publicar:**\n*   Vacía y enjuaga los envases\n*   Evita residuos orgánicos o químicos\n*   No mezcles plásticos diferentes\n\n**Separación por tipo:**\n*   Agrupa por número o tipo\n*   Usa bolsas o contenedores individuales\n\n**Etiquetado útil para la plataforma:**\n*   "PET limpio, sin etiquetas"\n*   "HDPE opaco, sin residuos"\n*   "PS en bloques grandes"\n\n**Evita mezclar materiales:**\n*   No combines plástico con cartón, metal o residuos no reciclables\n\n**Resultado:** Mejora el valor del material publicado y facilita la recolección para recicladores y empresas.`
   },
-    {
-    id: 'guide-3',
+  {
+    id: 'checklist-preparacion', // Nuevo ID
     title: 'Checklist de Preparación de Materiales (Descargable)',
-    description: 'Una lista de verificación útil para asegurar que tus materiales cumplen con los estándares de calidad.',
+    description: 'Asegurar que el material que publiques en e-colector esté limpio, separado, y listo para ser recolectado o vendido.',
     type: 'Recurso Descargable',
     icon: Download,
-    downloadUrl: '/docs/checklist-preparacion.pdf' // Enlace al archivo PDF
+    downloadUrl: '/docs/checklist-preparacion.pdf' // Mantenemos enlace de descarga, sin contenido detallado aquí
+    // No añadimos `content` ni `link` para este item descargable
   },
-   // Añadir más guías...
 ];
 
 const Guides = () => {

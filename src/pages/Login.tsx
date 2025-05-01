@@ -1,58 +1,89 @@
 import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import { UserRole } from '../types/user';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implementar lógica de login
+    // --- Simulación de Autenticación --- 
+    // En una app real, llamarías a tu API aquí.
+    // Aquí simulamos un login exitoso para cualquier email/pass
+    // y asignamos un rol basado en el email (solo para demo)
+    let simulatedRole = UserRole.BUYER; // Rol por defecto
+    if (email.includes('seller')) simulatedRole = UserRole.SELLER;
+    if (email.includes('collector')) simulatedRole = UserRole.COLLECTOR;
+    
+    const simulatedUserName = email.split('@')[0]; // Usar parte local del email como nombre
+
     console.log('Login attempt:', { email, password });
+    
+    login(simulatedRole, simulatedUserName); // Llamar a login del contexto
+    navigate('/dashboard'); // Redirigir al dashboard
+    // --- Fin Simulación ---
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-4">Iniciar Sesión</h1>
-      <form onSubmit={handleSubmit} className="max-w-sm mx-auto">
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-            Email
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="email"
-            type="email"
-            placeholder="tu@email.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div className="mb-6">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-            Contraseña
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-            id="password"
-            type="password"
-            placeholder="******************"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          {/* TODO: Añadir enlace "¿Olvidaste tu contraseña?" */}
-        </div>
-        <div className="flex items-center justify-between">
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="submit"
-          >
-            Iniciar Sesión
-          </button>
-          {/* TODO: Añadir enlace a la página de Registro */}
-        </div>
-      </form>
+    <div className="flex items-center justify-center min-h-[calc(100vh-128px)] bg-gray-50 px-4">
+      <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-lg">
+        <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">Iniciar Sesión</h2>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              Email
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autoComplete="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm"
+              placeholder="tu@email.com"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              Contraseña
+            </label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              autoComplete="current-password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm"
+              placeholder="Tu contraseña"
+            />
+             {/* TODO: Añadir enlace "Olvidé mi contraseña" */}
+          </div>
+
+          <div>
+            <button
+              type="submit"
+              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition duration-150 ease-in-out"
+            >
+              Entrar
+            </button>
+          </div>
+        </form>
+         <p className="mt-6 text-center text-sm text-gray-600">
+          ¿No tienes cuenta?{' '}
+          <Link to="/registro" className="font-medium text-emerald-600 hover:text-emerald-500">
+            Regístrate aquí
+          </Link>
+        </p>
+      </div>
     </div>
   );
 }
